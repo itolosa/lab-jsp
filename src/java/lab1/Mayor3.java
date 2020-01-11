@@ -7,6 +7,9 @@ package lab1;
 
 import java.io.IOException;
 import java.io.PrintWriter;
+import java.util.ArrayList;
+import java.util.Collections;
+import java.util.List;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
@@ -15,10 +18,10 @@ import javax.servlet.http.HttpServletResponse;
 
 /**
  *
- * @author javie
+ * @author Ignacio
  */
-@WebServlet(name = "Exponentiation", urlPatterns = {"/lab1/exponenciador"})
-public class Exponentiation extends HttpServlet {
+@WebServlet(name = "Mayor3", urlPatterns = {"/lab1/mayor3"})
+public class Mayor3 extends HttpServlet {
 
     /**
      * Processes requests for both HTTP <code>GET</code> and <code>POST</code>
@@ -31,11 +34,14 @@ public class Exponentiation extends HttpServlet {
      */
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-        Integer base = Integer.parseInt(request.getParameter("base"));
-        Integer exp = Integer.parseInt(request.getParameter("exp"));
-        Integer result = (int) Math.pow(base, exp);
-        request.setAttribute("powResult", result);
-        request.getRequestDispatcher("/lab1/exponenciador/show.jsp").forward(request, response);
+        String[] strnums = request.getParameter("comanums").split(",");
+        List<Integer> nums = new ArrayList<>();       
+        for (String num : strnums) {
+            nums.add(Integer.parseInt(num.trim()));
+        }
+        Integer maxNum = Collections.max(nums);
+        request.setAttribute("maxNum", maxNum);
+        request.getRequestDispatcher("/lab1/mayor3/show.jsp").forward(request, response);
     }
 
     // <editor-fold defaultstate="collapsed" desc="HttpServlet methods. Click on the + sign on the left to edit the code.">

@@ -17,7 +17,7 @@
             <div class="row no-gutters mb-0 border-bottom">
                 <div class="col ">
                     <nav class="navbar navbar-light bg-light">
-                        <a class="navbar-brand" href="/Lab1">Laboratorios de JSP</a>
+                        <a class="navbar-brand" href="${pageContext.request.contextPath}">Laboratorios de JSP</a>
                     </nav>
                 </div>
             </div>
@@ -25,7 +25,7 @@
                     <div class="col"
                         <nav aria-label="breadcrumb">
                             <ol class="breadcrumb pb-0 pt-0 rounded-0 border-bottom">
-                              <li class="breadcrumb-item"><a href="/Lab1">Laboratorios</a></li>
+                              <li class="breadcrumb-item"><a href="${pageContext.request.contextPath}">Laboratorios</a></li>
                               <li class="breadcrumb-item active" aria-current="page">Laboratorio 1</li>
                             </ol>
                         </nav>

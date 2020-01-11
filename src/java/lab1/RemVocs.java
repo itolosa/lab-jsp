@@ -7,6 +7,8 @@ package lab1;
 
 import java.io.IOException;
 import java.io.PrintWriter;
+import java.util.ArrayList;
+import java.util.List;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
@@ -15,10 +17,10 @@ import javax.servlet.http.HttpServletResponse;
 
 /**
  *
- * @author javie
+ * @author Ignacio
  */
-@WebServlet(name = "Exponentiation", urlPatterns = {"/lab1/exponenciador"})
-public class Exponentiation extends HttpServlet {
+@WebServlet(name = "RemVocs", urlPatterns = {"/lab2/remvocs"})
+public class RemVocs extends HttpServlet {
 
     /**
      * Processes requests for both HTTP <code>GET</code> and <code>POST</code>
@@ -29,13 +31,27 @@ public class Exponentiation extends HttpServlet {
      * @throws ServletException if a servlet-specific error occurs
      * @throws IOException if an I/O error occurs
      */
+    
+    private String removeVocals(String s) {
+        String new_s = new String("");
+        for (String c : s.split("")) {
+            if (!("aeiou".contains(c))) {
+                new_s += c;
+            }
+        }
+        return new_s;
+    }
+    
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-        Integer base = Integer.parseInt(request.getParameter("base"));
-        Integer exp = Integer.parseInt(request.getParameter("exp"));
-        Integer result = (int) Math.pow(base, exp);
-        request.setAttribute("powResult", result);
-        request.getRequestDispatcher("/lab1/exponenciador/show.jsp").forward(request, response);
+        List<String> results = new ArrayList<>();
+        String s;
+        for (int i = 0; i < 5; i++) {
+            s = request.getParameter("str" + Integer.toString(i + 1));
+            results.add(removeVocals(s));
+        }
+        request.setAttribute("results", results);
+        request.getRequestDispatcher("/lab2/remvocs/show.jsp").forward(request, response);
     }
 
     // <editor-fold defaultstate="collapsed" desc="HttpServlet methods. Click on the + sign on the left to edit the code.">

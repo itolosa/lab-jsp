@@ -7,5 +7,5 @@
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-<link rel="stylesheet" href="/Lab1/resources/bootstrap-4.4.1-dist/css/bootstrap.min.css">
-<link rel="stylesheet" href="/Lab1/resources/css/index.css">
+<link rel="stylesheet" href="${pageContext.request.contextPath}/resources/bootstrap-4.4.1-dist/css/bootstrap.min.css">
+<link rel="stylesheet" href="${pageContext.request.contextPath}/resources/css/index.css">

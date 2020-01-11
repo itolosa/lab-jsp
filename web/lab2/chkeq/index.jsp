@@ -1,13 +1,7 @@
 <%-- 
-    Document   : lab3
-    Created on : 02-01-2020, 13:40:27
-    Author     : javie
---%>
-
-<%-- 
-    Document   : lab2
-    Created on : 02-01-2020, 13:40:08
-    Author     : javie
+    Document   : index
+    Created on : Jan 10, 2020, 5:01:53 PM
+    Author     : Ignacio
 --%>
 
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
@@ -16,7 +10,7 @@
     <head>
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
         <%@include file="/partials/header.jsp" %>
-        <title>Laboratorio 3</title>
+        <title>Laboratorio 1</title>
     </head>
     <body class="container-fluid px-0">
         <div class="container px-0 min-100 border">
@@ -32,7 +26,8 @@
                         <nav aria-label="breadcrumb">
                             <ol class="breadcrumb pb-0 pt-0 rounded-0 border-bottom">
                               <li class="breadcrumb-item"><a href="${pageContext.request.contextPath}">Laboratorios</a></li>
-                              <li class="breadcrumb-item active" aria-current="page">Laboratorio 3</li>
+                              <li class="breadcrumb-item"><a href="${pageContext.request.contextPath}/lab2.jsp">Laboratorio 2</a></li>
+                              <li class="breadcrumb-item active" aria-current="page">Entero(s) con más dígitos iguales</li>
                             </ol>
                         </nav>
                     </div>
@@ -45,22 +40,28 @@
                 </div>
                 <div class="row mb-2">
                     <div class="col">
-                        <h1 class="light-title">Laboratorio 3</h1>
+                        <h1 class="light-title">Entero(s) con más dígitos iguales</h1>
                     </div>
                 </div>
                 <div class="row">
-                    <div class="col">
-                        <div class="list-group">
-                            <a href="lab3/pdfmatrix" class="list-group-item list-group-item-action">
-                              PDF con matriz
-                            </a>
-                            <a href="lab3/pdfimg" class="list-group-item list-group-item-action">
-                              PDF con fotos
-                            </a>
-                            <a href="lab3/numpdf/index.jsp" class="list-group-item list-group-item-action">
-                              PDF con números ordenados
-                            </a>
-                        </div>
+                    <div class="col-md-4">
+                       
+                        <form action="${pageContext.request.contextPath}/lab2/digiguales" method="POST" >
+                            <div class="form-group">
+                                <label for="intInput1">Ingrese entero 1</label>
+                                <input class="form-control" id="intInput1" type="text" name="int1">
+                            </div>
+                            <div class="form-group">
+                                <label for="intInput2">Ingrese entero 2</label>
+                                <input class="form-control" id="intInput2" type="text" name="int2">
+                            </div>
+                            <div class="form-group">
+                                <label for="intInput3">Ingrese entero 3</label>
+                                <input class="form-control" id="intInput3" type="text" name="int3">
+                            </div>
+                            <button type="submit" class="btn btn-primary">Enviar</button>
+                            
+                        </form>
                     </div>
                 </div>
             </div>
@@ -68,3 +69,4 @@
         <%@include file="/partials/scripts.jsp"%>
     </body>
 </html>
+

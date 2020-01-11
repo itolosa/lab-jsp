@@ -1,7 +1,7 @@
 <%-- 
-    Document   : show
-    Created on : 02-01-2020, 16:49:04
-    Author     : javie
+    Document   : index
+    Created on : Jan 10, 2020, 5:49:28 PM
+    Author     : Ignacio
 --%>
 
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
@@ -25,9 +25,8 @@
                         <nav aria-label="breadcrumb">
                             <ol class="breadcrumb pb-0 pt-0 rounded-0 border-bottom">
                               <li class="breadcrumb-item"><a href="${pageContext.request.contextPath}">Laboratorios</a></li>
-                              <li class="breadcrumb-item"><a href="${pageContext.request.contextPath}/lab1.jsp">Laboratorio 1</a></li>
-                              <li class="breadcrumb-item"><a href="${pageContext.request.contextPath}/lab1/exponenciador/index.jsp">Exponenciador</a></li>
-                              <li class="breadcrumb-item active" aria-current="page">Resultado</li>
+                              <li class="breadcrumb-item"><a href="${pageContext.request.contextPath}/lab3.jsp">Laboratorio 3</a></li>
+                              <li class="breadcrumb-item active" aria-current="page">PDF con números ordenados</li>
                             </ol>
                         </nav>
                     </div>
@@ -38,18 +37,20 @@
                 </div>
                 <div class="row mb-2">
                     <div class="col">
-                        <h1 class="light-title">Resultado</h1>
+                        <h1 class="light-title">PDF con números ordenados</h1>
                     </div>
                 </div>
                 <div class="row">
                     <div class="col-md-4">
-                        El resultado de la exponenciación es: <strong><%= request.getAttribute("powResult") %></strong>
-                    </div>
-                </div>
-                <br>
-                <div class="row">
-                    <div class="col">
-                        <a href="${pageContext.request.contextPath}/lab1/exponenciador/index.jsp">Volver</a>
+                        <form action="${pageContext.request.contextPath}/lab3/pdfnums" method="POST">
+                            <div class="form-group">
+                                <label for="numInput">Ingrese números</label>
+                                <input class="form-control" id="numInput" type="text" name="nums">
+                                <small id="numInput" class="form-text text-muted">Ingrese 9 números separados por coma.</small>
+                            </div>
+                            <button type="submit" class="btn btn-primary">Enviar</button>
+                        </form>
+                        
                     </div>
                 </div>
             </div>

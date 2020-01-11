@@ -1,15 +1,18 @@
 <%-- 
-    Document   : show
-    Created on : 02-01-2020, 16:49:04
-    Author     : javie
+    Document   : index
+    Created on : Jan 10, 2020, 5:01:53 PM
+    Author     : Ignacio
 --%>
 
+<%@page import="java.util.ArrayList"%>
+<%@page import="java.util.List"%>
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <!DOCTYPE html>
 <html>
     <head>
-        <title>Laboratorios de JSP</title>
+        <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
         <%@include file="/partials/header.jsp" %>
+        <title>Laboratorio 2</title>
     </head>
     <body class="container-fluid px-0">
         <div class="container px-0 min-100 border">
@@ -25,14 +28,16 @@
                         <nav aria-label="breadcrumb">
                             <ol class="breadcrumb pb-0 pt-0 rounded-0 border-bottom">
                               <li class="breadcrumb-item"><a href="${pageContext.request.contextPath}">Laboratorios</a></li>
-                              <li class="breadcrumb-item"><a href="${pageContext.request.contextPath}/lab1.jsp">Laboratorio 1</a></li>
-                              <li class="breadcrumb-item"><a href="${pageContext.request.contextPath}/lab1/exponenciador/index.jsp">Exponenciador</a></li>
+                              <li class="breadcrumb-item"><a href="${pageContext.request.contextPath}/lab2.jsp">Laboratorio 2</a></li>
+                              <li class="breadcrumb-item"><a href="${pageContext.request.contextPath}/lab2/encriptlet/index.jsp">Encriptar Letras</a></li>
                               <li class="breadcrumb-item active" aria-current="page">Resultado</li>
                             </ol>
                         </nav>
                     </div>
                 </div>
             <div class="container">
+                
+                
                 <div class="row">
                     <div class="col-sm"></div>
                 </div>
@@ -43,13 +48,7 @@
                 </div>
                 <div class="row">
                     <div class="col-md-4">
-                        El resultado de la exponenciación es: <strong><%= request.getAttribute("powResult") %></strong>
-                    </div>
-                </div>
-                <br>
-                <div class="row">
-                    <div class="col">
-                        <a href="${pageContext.request.contextPath}/lab1/exponenciador/index.jsp">Volver</a>
+                        Letras encriptadas: <strong><%= request.getAttribute("result") %></strong>
                     </div>
                 </div>
             </div>
@@ -57,3 +56,4 @@
         <%@include file="/partials/scripts.jsp"%>
     </body>
 </html>
+

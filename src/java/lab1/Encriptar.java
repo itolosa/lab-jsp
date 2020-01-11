@@ -15,10 +15,10 @@ import javax.servlet.http.HttpServletResponse;
 
 /**
  *
- * @author javie
+ * @author Ignacio
  */
-@WebServlet(name = "Exponentiation", urlPatterns = {"/lab1/exponenciador"})
-public class Exponentiation extends HttpServlet {
+@WebServlet(name = "Encriptar", urlPatterns = {"/lab2/encriptar"})
+public class Encriptar extends HttpServlet {
 
     /**
      * Processes requests for both HTTP <code>GET</code> and <code>POST</code>
@@ -29,13 +29,22 @@ public class Exponentiation extends HttpServlet {
      * @throws ServletException if a servlet-specific error occurs
      * @throws IOException if an I/O error occurs
      */
+    
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-        Integer base = Integer.parseInt(request.getParameter("base"));
-        Integer exp = Integer.parseInt(request.getParameter("exp"));
-        Integer result = (int) Math.pow(base, exp);
-        request.setAttribute("powResult", result);
-        request.getRequestDispatcher("/lab1/exponenciador/show.jsp").forward(request, response);
+        String letras = request.getParameter("str2enc").toLowerCase();
+        StringBuilder resultado = new StringBuilder();
+        for (int i = 0; i < letras.length(); i++) {
+            if (letras.charAt(i) >= 'a' && letras.charAt(i) <= 'z') {
+                if ((letras.charAt(i) + 5) > 'z') {
+                    resultado.append((char) (letras.charAt(i) + 5 - ('z' - 'a' + 1)));
+                } else {
+                    resultado.append((char) (letras.charAt(i) + 5));
+                }
+            }
+        }
+        request.setAttribute("result", resultado.toString());
+        request.getRequestDispatcher("/lab2/encriptlet/show.jsp").forward(request, response);
     }
 
     // <editor-fold defaultstate="collapsed" desc="HttpServlet methods. Click on the + sign on the left to edit the code.">

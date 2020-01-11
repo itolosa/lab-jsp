@@ -5,13 +5,11 @@
  */
 package lab1;
 
-import com.itextpdf.kernel.pdf.PdfDocument;
-import com.itextpdf.kernel.pdf.PdfWriter;
-import com.itextpdf.layout.Document;
-import com.itextpdf.layout.element.Paragraph;
 import java.io.IOException;
-import java.io.OutputStream;
 import java.io.PrintWriter;
+import java.util.ArrayList;
+import java.util.Collections;
+import java.util.List;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
@@ -20,10 +18,10 @@ import javax.servlet.http.HttpServletResponse;
 
 /**
  *
- * @author javie
+ * @author Ignacio
  */
-@WebServlet(name = "PdfMaker", urlPatterns = {"/pdfmaker"})
-public class PdfMaker extends HttpServlet {
+@WebServlet(name = "RepNombre", urlPatterns = {"/lab1/repetirnombre"})
+public class RepNombre extends HttpServlet {
 
     /**
      * Processes requests for both HTTP <code>GET</code> and <code>POST</code>
@@ -36,18 +34,9 @@ public class PdfMaker extends HttpServlet {
      */
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-        response.setContentType("text/html;charset=UTF-8");
-        response.setHeader("Expires", "0");
-        response.setHeader("Cache-Control", "must-revalidate, post-check=0, pre-check=0");
-        response.setHeader("Pragma", "public");
-        response.setContentType("application/pdf");
-        response.addHeader("Content-Disposition", "attachment; filename=test.pdf");
-
-        OutputStream os = response.getOutputStream();
-        PdfDocument pdf = new PdfDocument(new PdfWriter(os));
-        Document document = new Document(pdf);
-        document.add(new Paragraph("Hello World!"));
-        document.close();
+        String nombre = request.getParameter("nombre");
+        request.setAttribute("nombre", nombre);
+        request.getRequestDispatcher("/lab1/nombre/show.jsp").forward(request, response);
     }
 
     // <editor-fold defaultstate="collapsed" desc="HttpServlet methods. Click on the + sign on the left to edit the code.">

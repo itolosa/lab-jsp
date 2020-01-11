@@ -15,10 +15,10 @@ import javax.servlet.http.HttpServletResponse;
 
 /**
  *
- * @author javie
+ * @author Ignacio
  */
-@WebServlet(name = "Exponentiation", urlPatterns = {"/lab1/exponenciador"})
-public class Exponentiation extends HttpServlet {
+@WebServlet(name = "PruebaAlternativas", urlPatterns = {"/lab1/pruebaconalt"})
+public class PruebaAlternativas extends HttpServlet {
 
     /**
      * Processes requests for both HTTP <code>GET</code> and <code>POST</code>
@@ -31,11 +31,18 @@ public class Exponentiation extends HttpServlet {
      */
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-        Integer base = Integer.parseInt(request.getParameter("base"));
-        Integer exp = Integer.parseInt(request.getParameter("exp"));
-        Integer result = (int) Math.pow(base, exp);
-        request.setAttribute("powResult", result);
-        request.getRequestDispatcher("/lab1/exponenciador/show.jsp").forward(request, response);
+        String respuesta1 = request.getParameter("respuesta1");
+        String respuesta2 = request.getParameter("respuesta2");
+        String respuesta3 = request.getParameter("respuesta3");
+        Double puntaje = 0.0;
+        if (respuesta1.equals("2"))
+            puntaje += (1/3.0);
+        if (respuesta2.equals("2"))
+            puntaje += (1.0/3.0);
+        if (respuesta3.equals("1"))
+            puntaje += (1.0/3.0);
+        request.setAttribute("puntaje", puntaje*6.0 + 1.0);
+        request.getRequestDispatcher("/lab1/prueba/show.jsp").forward(request, response);
     }
 
     // <editor-fold defaultstate="collapsed" desc="HttpServlet methods. Click on the + sign on the left to edit the code.">

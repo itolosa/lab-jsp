@@ -9,14 +9,14 @@
 <html>
     <head>
         <title>Laboratorios de JSP</title>
-        <%@include file="../../partials/header.jsp" %>
+        <%@include file="/partials/header.jsp" %>
     </head>
     <body class="container-fluid px-0">
         <div class="container px-0 min-100 border">
             <div class="row no-gutters mb-0 border-bottom">
                 <div class="col ">
                     <nav class="navbar navbar-light bg-light">
-                        <a class="navbar-brand" href="/Lab1">Laboratorios de JSP</a>
+                        <a class="navbar-brand" href="${pageContext.request.contextPath}">Laboratorios de JSP</a>
                     </nav>
                 </div>
             </div>
@@ -24,8 +24,8 @@
                     <div class="col"
                         <nav aria-label="breadcrumb">
                             <ol class="breadcrumb pb-0 pt-0 rounded-0 border-bottom">
-                              <li class="breadcrumb-item"><a href="/Lab1">Laboratorios</a></li>
-                              <li class="breadcrumb-item"><a href="/Lab1/lab1.jsp">Laboratorio 1</a></li>
+                              <li class="breadcrumb-item"><a href="${pageContext.request.contextPath}">Laboratorios</a></li>
+                              <li class="breadcrumb-item"><a href="${pageContext.request.contextPath}/lab1.jsp">Laboratorio 1</a></li>
                               <li class="breadcrumb-item active" aria-current="page">Mayor de 3 números</li>
                             </ol>
                         </nav>
@@ -42,13 +42,12 @@
                 </div>
                 <div class="row">
                     <div class="col-md-4">
-                        <form action="/Lab1/mayor" method="POST">
+                        <form action="${pageContext.request.contextPath}/lab1/mayor3" method="POST">
                             <div class="form-group">
                                 <label for="numInput">Ingrese numeros</label>
-                                <input class="form-control" id="numInput" type="text" name="rawnumbers">
+                                <input class="form-control" id="numInput" type="text" name="comanums">
                                 <small id="numInput" class="form-text text-muted">Ingrese numeros separados por coma.</small>
                             </div>
-                            <br>
                             <button type="submit" class="btn btn-primary">Enviar</button>
                         </form>
                         
@@ -56,6 +55,6 @@
                 </div>
             </div>
         </div>
-        <%@include file="../../partials/scripts.jsp"%>
+        <%@include file="/partials/scripts.jsp"%>
     </body>
 </html>

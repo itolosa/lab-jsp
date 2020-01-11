@@ -9,65 +9,62 @@
 <html>
     <head>
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-        <title>Laboratorio 2</title>
+        <%@include file="/partials/header.jsp" %>
+        <title>Laboratorio 1</title>
     </head>
-    <body>
-        <h1>Tabla multiplicar</h1>
-        <table border="1">
-        <%
-        for (int i=1; i<11; i++) {
-        %>
-            <% if (i == 1) { %>
-            <tr>
-                <td></td>
-                <%
-                for (int j=1; j<11; j++) {
-                %>
-                <td><strong><%= j %></strong></td>
-                <% } %>
+    <body class="container-fluid px-0">
+        <div class="container px-0 min-100 border">
+            <div class="row no-gutters mb-0 border-bottom">
+                <div class="col ">
+                    <nav class="navbar navbar-light bg-light">
+                        <a class="navbar-brand" href="${pageContext.request.contextPath}">Laboratorios de JSP</a>
+                    </nav>
+                </div>
+            </div>
+            <div class="row">
+                    <div class="col"
+                        <nav aria-label="breadcrumb">
+                            <ol class="breadcrumb pb-0 pt-0 rounded-0 border-bottom">
+                              <li class="breadcrumb-item"><a href="${pageContext.request.contextPath}">Laboratorios</a></li>
+                              <li class="breadcrumb-item active" aria-current="page">Laboratorio 2</li>
+                            </ol>
+                        </nav>
+                    </div>
+                </div>
+            <div class="container">
                 
-            </tr>
-            <% } %>
-            <tr>
-            <%
-            for (int j=1; j<11; j++) {
-            %>
-            <% if (j == 1) { %>
-            <td><strong><%= i %></strong></td>
-            <% } %>
-                <td><%= i*j %></td>
-            <% } %>
-            </tr>
-        <% } %>
-        </table>
-        <h1>Enviar 3 nros (chkdigiguales)</h1>
-        <form action="#" >
-            <input type="text" name="chkdig1">
-            <input type="text" name="chkdig2">
-            <input type="text" name="chkdig3">
-            <button type="submit">Enviar</button>
-        </form>
-        <h1>Enviar 3 nros (chkpar)</h1>
-        <form action="#" >
-            <input type="text" name="chkpar1">
-            <input type="text" name="chkpar2">
-            <input type="text" name="chkpar3">
-            <input type="text" name="chkpar4">
-            <button type="submit">Enviar</button>
-        </form>
-        <h1>Cad Vocales</h1>
-        <form action="#" >
-            <input type="text" name="cad1">
-            <input type="text" name="cad2">
-            <input type="text" name="cad3">
-            <input type="text" name="cad4">
-            <input type="text" name="cad5">
-            <button type="submit">Enviar</button>
-        </form>
-        <h1>Encriptar</h1>
-        <form action="#" >
-            <input type="text" name="encryptword">
-            <button type="submit">Enviar</button>
-        </form>
+                
+                <div class="row">
+                    <div class="col-sm"></div>
+                </div>
+                <div class="row mb-2">
+                    <div class="col">
+                        <h1 class="light-title">Laboratorio 2</h1>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col">
+                        <div class="list-group">
+                            <a href="lab2/tabmult/index.jsp" class="list-group-item list-group-item-action">
+                              Matriz de Multiplicación
+                            </a>
+                            <a href="lab2/chkeq/index.jsp" class="list-group-item list-group-item-action">
+                              Entero(s) con más dígitos iguales
+                            </a>
+                            <a href="lab2/chkpar/index.jsp" class="list-group-item list-group-item-action">
+                              Entero(s) con más dígitos pares
+                            </a>
+                            <a href="lab2/remvocs/index.jsp" class="list-group-item list-group-item-action">
+                              Eliminar vocales
+                            </a>
+                            <a href="lab2/encriptlet/index.jsp" class="list-group-item list-group-item-action">
+                              Encriptar letras
+                            </a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <%@include file="/partials/scripts.jsp"%>
     </body>
 </html>

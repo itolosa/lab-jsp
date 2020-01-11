@@ -1,10 +1,9 @@
-package lab1;
-
 /*
  * To change this license header, choose License Headers in Project Properties.
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
+package lab1;
 
 import com.itextpdf.io.font.FontConstants;
 import com.itextpdf.io.font.PdfEncodings;
@@ -24,72 +23,28 @@ import com.itextpdf.kernel.pdf.canvas.PdfCanvas;
 import com.itextpdf.kernel.pdf.xobject.PdfFormXObject;
 import com.itextpdf.layout.Document;
 import com.itextpdf.layout.element.AreaBreak;
-import com.itextpdf.layout.element.Cell;
 import com.itextpdf.layout.element.Image;
 import com.itextpdf.layout.element.Paragraph;
-import com.itextpdf.layout.element.Table;
-import com.itextpdf.layout.property.HorizontalAlignment;
-import com.itextpdf.layout.property.UnitValue;
-import com.itextpdf.layout.property.VerticalAlignment;
-import java.io.File;
 import java.io.IOException;
 import java.io.OutputStream;
 import java.io.PrintWriter;
-import java.nio.file.Path;
-import java.nio.file.Paths;
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.Date;
 import java.util.List;
-import java.util.Random;
-import javax.servlet.ServletException;
-import javax.servlet.annotation.WebServlet;
-import javax.servlet.http.HttpServlet;
-import javax.servlet.http.HttpServletRequest;
-import javax.servlet.http.HttpServletResponse;
-import com.itextpdf.io.font.FontConstants;
-import com.itextpdf.io.font.PdfEncodings;
-import com.itextpdf.kernel.events.Event;
-import com.itextpdf.kernel.events.IEventHandler;
-import com.itextpdf.kernel.events.PdfDocumentEvent;
-import com.itextpdf.kernel.font.PdfFont;
-import com.itextpdf.kernel.font.PdfFontFactory;
-import com.itextpdf.kernel.geom.PageSize;
-import com.itextpdf.kernel.geom.Rectangle;
-import java.io.IOException;
-import java.io.PrintWriter;
+import java.util.stream.Collectors;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-import com.itextpdf.kernel.pdf.PdfDocument;
-import com.itextpdf.kernel.pdf.PdfName;
-import com.itextpdf.kernel.pdf.PdfPage;
-import com.itextpdf.kernel.pdf.PdfWriter;
-import com.itextpdf.kernel.pdf.canvas.PdfCanvas;
-import com.itextpdf.kernel.pdf.xobject.PdfFormXObject;
-import com.itextpdf.layout.Document;
-import com.itextpdf.layout.element.Cell;
-import com.itextpdf.layout.element.Paragraph;
-import com.itextpdf.layout.element.Table;
-import com.itextpdf.layout.property.HorizontalAlignment;
-import com.itextpdf.layout.property.UnitValue;
-import com.itextpdf.layout.property.VerticalAlignment;
-
-import java.io.File;
-import java.io.OutputStream;
-import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.Date;
-import java.util.List;
-import java.util.Random;
 /**
  *
- * @author javie
+ * @author Ignacio
  */
-@WebServlet(urlPatterns = {"/lab3/pdfimg"})
-public class ImagePdf extends HttpServlet {
+@WebServlet(name = "PDFNums", urlPatterns = {"/lab3/pdfnums"})
+public class PDFNums extends HttpServlet {
 
     /**
      * Processes requests for both HTTP <code>GET</code> and <code>POST</code>
@@ -134,25 +89,12 @@ public class ImagePdf extends HttpServlet {
 
         // By default column width is calculated automatically for the best fit.
         // useAllAvailableWidth() method makes table use the whole page's width while placing the content.
-        ImageData data1 = ImageDataFactory.create(getServletContext().getRealPath("../../web/resources/img1.jpg"));              
-        // Creating an Image object
-        Image image1 = new Image(data1);  
-        doc.add(image1);
-        doc.add(new AreaBreak());
-        ImageData data2 = ImageDataFactory.create(getServletContext().getRealPath("../../web/resources/img2.jpg"));              
-        // Creating an Image object
-        Image image2 = new Image(data2);  
-        doc.add(image2);
-        doc.add(new AreaBreak());
-        ImageData data3 = ImageDataFactory.create(getServletContext().getRealPath("../../web/resources/img3.jpg"));              
-        // Creating an Image object
-        Image image3 = new Image(data3);  
-        doc.add(image3);
-        doc.add(new AreaBreak());
-        ImageData data4 = ImageDataFactory.create(getServletContext().getRealPath("../../web/resources/img4.jpg"));              
-        // Creating an Image object
-        Image image4 = new Image(data4);  
-        doc.add(image4);
+        List<Integer> numeros = new ArrayList<>();
+        for(String num : request.getParameter("nums").split(",")) {
+            numeros.add(Integer.parseInt(num.trim()));
+        }
+        Collections.sort(numeros, Collections.reverseOrder());
+        doc.add(new Paragraph(numeros.stream().map(s -> String.valueOf(s)).collect(Collectors.joining(", "))));
         
         canvas.beginText();
         try {
@@ -160,7 +102,8 @@ public class ImagePdf extends HttpServlet {
         } catch (IOException e) {
             e.printStackTrace();
         }
-        
+        canvas.moveText(550, 803);
+        canvas.showText(Integer.toString(pdfDoc.getNumberOfPages()));
         canvas.endText();
         canvas.release();
 
@@ -192,7 +135,7 @@ public class ImagePdf extends HttpServlet {
             canvas.moveText(34, 803);
             canvas.showText(fecha);
             canvas.moveText(450, 0);
-            
+            canvas.showText(String.format("Pagina %d de", pageNum));
             canvas.endText();
             canvas.stroke();
             canvas.addXObject(template, 0, 0);
@@ -244,4 +187,3 @@ public class ImagePdf extends HttpServlet {
     }// </editor-fold>
 
 }
-
